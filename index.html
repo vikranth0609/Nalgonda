@@ -292,7 +292,7 @@
   function updateZoom() {
     document.body.style.zoom = currentZoom;
     // Alternative for better browser support
-    document.body.style.transform = scale(${currentZoom});
+    document.body.style.transform = `scale(${currentZoom})`;
     document.body.style.transformOrigin = 'top left';
     if (currentZoom !== 1) {
       document.body.style.width = (100 / currentZoom) + "%";
@@ -381,7 +381,7 @@
     if (!data.length) return;
     const allColumns = allColumnsOrdered.length ? allColumnsOrdered : Object.keys(data[0])
       .filter(h => !h.toLowerCase().startsWith("mandals in"))
-      .filter(h => h.toLowerCase() !== "mobile number" && h.toLowerCase() !== "mobilenumber" && h.replace(/\s+/g,"" ).toLowerCase() !== "mobilenumber");
+      .filter(h => h.toLowerCase() !== "mobile number" && h.toLowerCase() !== "mobilenumber" && h.replace(/\s+/g,"").toLowerCase() !== "mobilenumber");
     const label = document.createElement("div");
     label.textContent = "Select columns:";
     label.style.fontWeight = "600";
@@ -391,12 +391,12 @@
     allColumns.forEach(col => {
       const wrapper = document.createElement("label");
       wrapper.className = "column-checkbox";
-      wrapper.htmlFor = col_${col};
+      wrapper.htmlFor = `col_${col}`;
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.value = col;
       checkbox.checked = columns.includes(col);
-      checkbox.id = col_${col};
+      checkbox.id = `col_${col}`;
       checkbox.addEventListener("change", function() {
         if (this.checked) {
           if (!visibleColumns.includes(col)) {
